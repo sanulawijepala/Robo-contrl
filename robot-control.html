@@ -1078,6 +1078,18 @@
             setTimeout(sendPing, 5000); // Every 5 seconds
         }
         */
+     const ESP32_IP = "192.168.1.100"; // Must match staticIP in ESP32 code
+const webSocket = new WebSocket(`ws://${ESP32_IP}:81`);
+
+webSocket.onopen = function() {
+  console.log("Connected to ESP32");
+  document.getElementById("status").textContent = "Connected to ws://" + ESP32_IP;
+};
+
+webSocket.onerror = function(error) {
+  console.error("WebSocket Error:", error);
+  document.getElementById("status").textContent = "Connection failed";
+}
     </script>
 </body>
 </html>
