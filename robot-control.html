@@ -75,66 +75,6 @@
         h5 { font-size: var(--h5); }
         small { font-size: var(--small); }
 
-        /* Theme Toggle Styles */
-        .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            border: none;
-            background: var(--accent);
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            box-shadow: 0 2px 10px var(--shadow);
-            padding: 0;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 3px 15px var(--shadow);
-        }
-
-        .theme-toggle:active {
-            transform: scale(0.95);
-        }
-
-        .theme-icon {
-            position: absolute;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-            transform: scale(1) rotate(0deg);
-            opacity: 1;
-        }
-
-        .theme-icon.moon {
-            color: var(--text);
-        }
-
-        .theme-icon.sun {
-            color: #ffd700;
-            transform: scale(0) rotate(90deg);
-            opacity: 0;
-        }
-
-        [data-theme="dark"] .theme-icon.moon {
-            transform: scale(0) rotate(-90deg);
-            opacity: 0;
-        }
-
-        [data-theme="dark"] .theme-icon.sun {
-            transform: scale(1) rotate(0deg);
-            opacity: 1;
-        }
-
         /* Header */
         header {
             display: flex;
@@ -167,218 +107,7 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-        }
-
-        .online {
-            background-color: var(--success);
-            box-shadow: 0 0 8px var(--success);
-        }
-
-        .offline {
             background-color: var(--danger);
-        }
-
-        .connecting {
-            background-color: #FFCC00;
-            box-shadow: 0 0 8px #FFCC00;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-
-        /* Connection Popup */
-        .connection-popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            display: none;
-            align-items: center;
-            gap: 1rem;
-            max-width: 300px;
-            width: 90%;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .connection-popup.show {
-            display: flex;
-        }
-
-        .connection-popup.success {
-            background: #4BB543;
-            color: white;
-        }
-
-        .connection-popup.error {
-            background: #FF3333;
-            color: white;
-        }
-
-        .connection-popup.connecting {
-            background: #FFCC00;
-            color: black;
-        }
-
-        .connection-popup i {
-            font-size: 1.5rem;
-        }
-
-        .connection-popup .popup-content {
-            flex: 1;
-        }
-
-        .connection-popup .popup-close {
-            background: none;
-            border: none;
-            color: inherit;
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translate(-50%, -40%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
-        }
-
-        /* IP Connection Section */
-        .ip-connection {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 1.5rem;
-            align-items: center;
-            width: 100%;
-            max-width: 600px;
-        }
-
-        .ip-input-group {
-            position: relative;
-            flex-grow: 1;
-        }
-
-        .ip-input-group .icon {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--accent);
-            z-index: 2;
-        }
-
-        #esp32-ip {
-            width: 100%;
-            padding: 12px 12px 12px 40px;
-            border: 2px solid var(--border);
-            border-radius: 8px;
-            background: var(--panel);
-            color: var(--text);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px var(--shadow);
-        }
-
-        #esp32-ip:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
-        }
-
-        .connect-btn {
-            padding: 12px 20px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 500;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px var(--shadow);
-            white-space: nowrap;
-        }
-
-        .connect-btn:hover {
-            background: var(--secondary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px var(--shadow);
-        }
-
-        .connect-btn:active {
-            transform: translateY(0);
-        }
-
-        .connect-btn i {
-            font-size: 1.1rem;
-        }
-
-        .connect-btn.loading {
-            position: relative;
-            color: transparent;
-            pointer-events: none;
-        }
-
-        .connect-btn.loading::after {
-            content: "";
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            border: 2px solid rgba(255,255,255,0.3);
-            border-top-color: white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Dark mode adjustments */
-        [data-theme="dark"] #esp32-ip {
-            background: var(--panel);
-            border-color: var(--border);
-        }
-
-        /* Control Panel */
-        .control-panel {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        /* Joystick */
-        .joystick-area {
-            position: relative;
-            height: 300px;
-            background: var(--panel);
-            border-radius: 50%;
-            box-shadow: 0 8px 24px var(--shadow);
-            border: 2px solid var(--primary);
-        }
-
-        .joystick {
-            width: 80px;
-            height: 80px;
-            background: var(--primary);
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            cursor: pointer;
-            box-shadow: 0 4px 12px var(--shadow);
-            z-index: 10;
-            transition: transform 0.1s ease;
         }
 
         /* Direction Pad */
@@ -403,6 +132,7 @@
             align-items: center;
             justify-content: center;
             transition: transform 0.1s, box-shadow 0.2s, filter 0.2s;
+            text-decoration: none;
         }
 
         .control-btn:hover {
@@ -413,12 +143,6 @@
         .control-btn:active {
             transform: translateY(1px);
             filter: brightness(0.9);
-        }
-
-        .control-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none !important;
         }
 
         /* Color-Coded Buttons */
@@ -440,26 +164,6 @@
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
-        }
-
-        input[type="range"] {
-            width: 100%;
-            height: 8px;
-            -webkit-appearance: none;
-            background: linear-gradient(to right, var(--primary), var(--primary));
-            border-radius: 4px;
-            outline: none;
-            cursor: pointer;
-        }
-
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--secondary);
-            cursor: pointer;
-            border: 2px solid var(--panel);
         }
 
         /* Feature Buttons */
@@ -485,6 +189,7 @@
             justify-content: center;
             gap: 0.5rem;
             transition: transform 0.1s, box-shadow 0.2s, filter 0.2s;
+            text-decoration: none;
         }
 
         .feature-btn:hover {
@@ -497,45 +202,9 @@
             filter: brightness(0.9);
         }
 
-        .feature-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-
         #emergency-stop {
             background: var(--danger);
             color: white;
-        }
-
-        /* Logs */
-        .logs-container {
-            background: var(--panel);
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px var(--shadow);
-            border: 1px solid var(--border);
-        }
-
-        .logs {
-            height: 200px;
-            overflow-y: auto;
-            padding: 1rem;
-            background: var(--bg);
-            border-radius: 8px;
-            font-family: 'Roboto Mono', monospace;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            border: 1px solid var(--border);
-        }
-
-        .log-entry {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .log-entry:last-child {
-            border-bottom: none;
         }
 
         /* Responsive */
@@ -544,552 +213,45 @@
                 padding: 1rem;
             }
             
-            .control-panel {
-                grid-template-columns: 1fr;
+            .direction-pad {
+                grid-template-columns: repeat(3, 1fr);
             }
             
-            .joystick-area {
-                height: 250px;
-            }
-            
-            .ip-connection {
+            .additional-features {
                 flex-direction: column;
             }
             
-            .connect-btn {
-                justify-content: center;
+            .feature-btn {
+                width: 100%;
             }
         }
-         /* Signal Strength Indicator Styles */
-        .signal-strength {
-            display: flex;
-            align-items: flex-end;
-            gap: 3px;
-            height: 20px;
-            margin-left: 10px;
-        }
-
-        .signal-bar {
-            width: 5px;
-            background: #ccc;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        .signal-bar:nth-child(1) { height: 25%; }
-        .signal-bar:nth-child(2) { height: 50%; }
-        .signal-bar:nth-child(3) { height: 75%; }
-        .signal-bar:nth-child(4) { height: 100%; }
-
-        .signal-strength.excellent .signal-bar {
-            background: #4CAF50;
-        }
-        .signal-strength.good .signal-bar {
-            background: #8BC34A;
-        }
-        .signal-strength.fair .signal-bar {
-            background: #FFC107;
-        }
-        .signal-strength.weak .signal-bar {
-            background: #FF9800;
-        }
-        .signal-strength.poor .signal-bar {
-            background: #F44336;
-        }
-
-        /* Show different bars based on strength */
-        .signal-strength.poor .signal-bar:nth-child(n+2) { opacity: 0.3; }
-        .signal-strength.weak .signal-bar:nth-child(n+3) { opacity: 0.3; }
-        .signal-strength.fair .signal-bar:nth-child(n+4) { opacity: 0.3; }
     </style>
 </head>
 <body>
-
-    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle dark/light mode">
-        <span class="theme-icon moon"><i class="fas fa-moon"></i></span>
-        <span class="theme-icon sun"><i class="fas fa-sun"></i></span>
-    </button>
-
     <div class="container">
         <header>
             <h1><i class="fas fa-robot"></i> ESP32 Robot Controller</h1>
             <div class="connection-status">
-                <span id="status-indicator" class="offline"></span>
-                <span id="status-text">Disconnected</span>
+                <span id="status-indicator"></span>
+                <span id="status-text">HTTP Mode</span>
             </div>
         </header>
-    <div class="connection-status">
-        <span id="status-indicator" class="offline"></span>
-        <span id="status-text">Disconnected</span>
-        <div class="signal-strength poor" id="signal-strength">
-            <div class="signal-bar"></div>
-            <div class="signal-bar"></div>
-            <div class="signal-bar"></div>
-            <div class="signal-bar"></div>
-        </div>
-    </div>
-        <!-- Connection Popup -->
-        <div id="connection-popup" class="connection-popup">
-            <i id="popup-icon"></i>
-            <div class="popup-content" id="popup-message"></div>
-            <button class="popup-close" id="popup-close">&times;</button>
-        </div>
-
-        <!-- IP Connection Section -->
-        <div class="ip-connection">
-            <div class="ip-input-group">
-                <i class="fas fa-wifi icon"></i>
-                <input 
-                    type="text" 
-                    id="esp32-ip" 
-                    placeholder="ESP32 IP (e.g., 192.168.1.100)"
-                    value="192.168.1.100"
-                >
-            </div>
-            <button id="connect-btn" class="connect-btn">
-                <i class="fas fa-plug"></i> Connect
-            </button>
-        </div>
 
         <div class="control-panel">
-            <div class="joystick-area" id="joystick-area">
-                <div class="joystick" id="joystick"></div>
-            </div>
-
-            <div class="manual-controls">
-                <div class="direction-pad">
-                    <button class="control-btn forward" id="forward" disabled><i class="fas fa-arrow-up"></i></button>
-                    <button class="control-btn left" id="left" disabled><i class="fas fa-arrow-left"></i></button>
-                    <button class="control-btn stop" id="stop" disabled><i class="fas fa-stop"></i></button>
-                    <button class="control-btn right" id="right" disabled><i class="fas fa-arrow-right"></i></button>
-                    <button class="control-btn backward" id="backward" disabled><i class="fas fa-arrow-down"></i></button>
-                </div>
-
-                <div class="speed-control">
-                    <label for="speed">Speed: <span id="speed-value">50</span>%</label>
-                    <input type="range" id="speed" min="0" max="100" value="50">
-                </div>
+            <div class="direction-pad">
+                <a href="/F" class="control-btn forward" id="F"><i class="fas fa-arrow-up"></i></a>
+                <a href="/L" class="control-btn left" id="L"><i class="fas fa-arrow-left"></i></a>
+                <a href="/S" class="control-btn stop" id="S"><i class="fas fa-stop"></i></a>
+                <a href="/R" class="control-btn right" id="R"><i class="fas fa-arrow-right"></i></a>
+                <a href="/B" class="control-btn backward" id="B"><i class="fas fa-arrow-down"></i></a>
             </div>
 
             <div class="additional-features">
-                <button class="feature-btn" id="led-toggle" disabled><i class="fas fa-lightbulb"></i> Toggle LED</button>
-                <button class="feature-btn" id="horn" disabled><i class="fas fa-bell"></i> Horn</button>
-                <button class="feature-btn" id="emergency-stop" disabled><i class="fas fa-exclamation-triangle"></i> Emergency Stop</button>
+                <a href="/led" class="feature-btn" id="led-toggle"><i class="fas fa-lightbulb"></i> Toggle LED</a>
+                <a href="/horn" class="feature-btn" id="horn"><i class="fas fa-bell"></i> Horn</a>
+                <a href="/emergency" class="feature-btn" id="emergency-stop"><i class="fas fa-exclamation-triangle"></i> Emergency Stop</a>
             </div>
         </div>
-
-        <div class="logs-container">
-            <h2><i class="fas fa-history"></i> Command Logs</h2>
-            <div class="logs" id="command-logs"></div>
-        </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // DOM Elements
-            const joystickArea = document.getElementById('joystick-area');
-            const joystick = document.getElementById('joystick');
-            const forwardBtn = document.getElementById('forward');
-            const backwardBtn = document.getElementById('backward');
-            const leftBtn = document.getElementById('left');
-            const rightBtn = document.getElementById('right');
-            const stopBtn = document.getElementById('stop');
-            const ledBtn = document.getElementById('led-toggle');
-            const hornBtn = document.getElementById('horn');
-            const emergencyBtn = document.getElementById('emergency-stop');
-            const speedSlider = document.getElementById('speed');
-            const speedValue = document.getElementById('speed-value');
-            const statusIndicator = document.getElementById('status-indicator');
-            const statusText = document.getElementById('status-text');
-            const commandLogs = document.getElementById('command-logs');
-            const esp32IpInput = document.getElementById('esp32-ip');
-            const connectBtn = document.getElementById('connect-btn');
-            const themeToggle = document.getElementById('theme-toggle');
-            const html = document.documentElement;
-            const connectionPopup = document.getElementById('connection-popup');
-            const popupIcon = document.getElementById('popup-icon');
-            const popupMessage = document.getElementById('popup-message');
-            const popupClose = document.getElementById('popup-close');
-            
-            // Variables
-            let isJoystickActive = false;
-            let currentSpeed = 50;
-            let websocket = null;
-            let isConnected = false;
-            let lastCommand = null;
-            let commandInterval = null;
-            
-            // Initialize
-            initTheme();
-            updateSpeedDisplay();
-            loadCommandLogs();
-            
-            // Event Listeners
-            speedSlider.addEventListener('input', updateSpeedDisplay);
-            connectBtn.addEventListener('click', connectToESP32);
-            popupClose.addEventListener('click', () => {
-                connectionPopup.classList.remove('show');
-            });
-            themeToggle.addEventListener('click', toggleTheme);
-            
-            // Button controls
-            forwardBtn.addEventListener('mousedown', () => sendCommand('forward'));
-            backwardBtn.addEventListener('mousedown', () => sendCommand('backward'));
-            leftBtn.addEventListener('mousedown', () => sendCommand('left'));
-            rightBtn.addEventListener('mousedown', () => sendCommand('right'));
-            stopBtn.addEventListener('click', () => sendCommand('stop'));
-            
-            // Release buttons
-            [forwardBtn, backwardBtn, leftBtn, rightBtn].forEach(btn => {
-                btn.addEventListener('mouseup', () => sendCommand('stop'));
-                btn.addEventListener('mouseleave', () => sendCommand('stop'));
-            });
-            
-            // Additional features
-            ledBtn.addEventListener('click', () => sendCommand('led_toggle'));
-            hornBtn.addEventListener('click', () => sendCommand('horn'));
-            emergencyBtn.addEventListener('click', () => sendCommand('emergency'));
-            
-            // Joystick controls
-            joystickArea.addEventListener('mousedown', activateJoystick);
-            joystickArea.addEventListener('touchstart', activateJoystick);
-            document.addEventListener('mousemove', moveJoystick);
-            document.addEventListener('touchmove', moveJoystick);
-            document.addEventListener('mouseup', deactivateJoystick);
-            document.addEventListener('touchend', deactivateJoystick);
-            
-            // Functions
-            function updateSpeedDisplay() {
-                currentSpeed = speedSlider.value;
-                speedValue.textContent = currentSpeed;
-            }
-            
-            function connectToESP32() {
-                const ip = esp32IpInput.value.trim();
-                
-                if (!ip) {
-                    showPopup('error', 'Please enter an IP address');
-                    return;
-                }
-                
-                // Show connecting state
-                connectBtn.classList.add('loading');
-                statusIndicator.classList.remove('offline', 'online');
-                statusIndicator.classList.add('connecting');
-                statusText.textContent = 'Connecting...';
-                showPopup('connecting', 'Connecting to ESP32...');
-                
-                const url = `ws://${ip}:81`;
-                websocket = new WebSocket(url);
-                
-                websocket.onopen = function() {
-                    isConnected = true;
-                    connectBtn.classList.remove('loading');
-                    statusIndicator.classList.remove('connecting');
-                    statusIndicator.classList.add('online');
-                    statusText.textContent = 'Connected';
-                    showPopup('success', 'Connected successfully!');
-                    enableControls(true);
-                    addLogEntry('WebSocket connection established');
-                };
-                
-                websocket.onerror = function(error) {
-                    connectBtn.classList.remove('loading');
-                    statusIndicator.classList.remove('connecting');
-                    statusIndicator.classList.add('offline');
-                    statusText.textContent = 'Connection Failed';
-                    showPopup('error', `Connection failed: ${error.message}`);
-                    addLogEntry(`Connection error: ${error.message}`);
-                };
-                
-                websocket.onclose = function() {
-                    isConnected = false;
-                    connectBtn.classList.remove('loading');
-                    statusIndicator.classList.remove('connecting', 'online');
-                    statusIndicator.classList.add('offline');
-                    statusText.textContent = 'Disconnected';
-                    enableControls(false);
-                    addLogEntry('WebSocket connection closed');
-                    clearInterval(commandInterval);
-                };
-                
-                websocket.onmessage = function(event) {
-                    addLogEntry(`ESP32: ${event.data}`);
-                };
-            }
-            
-            function enableControls(enabled) {
-                const controls = [
-                    forwardBtn, backwardBtn, leftBtn, rightBtn, stopBtn,
-                    ledBtn, hornBtn, emergencyBtn, speedSlider
-                ];
-                
-                controls.forEach(control => {
-                    control.disabled = !enabled;
-                });
-            }
-            
-            function sendCommand(command) {
-                if (!isConnected || !websocket) {
-                    addLogEntry('Error: Not connected to ESP32');
-                    return;
-                }
-                
-                let commandText = '';
-                let speed = currentSpeed;
-                
-                switch(command) {
-                    case 'forward':
-                        commandText = 'F';
-                        break;
-                    case 'backward':
-                        commandText = 'B';
-                        break;
-                    case 'left':
-                        commandText = 'L';
-                        break;
-                    case 'right':
-                        commandText = 'R';
-                        break;
-                    case 'stop':
-                        commandText = 'S';
-                        speed = 0;
-                        break;
-                    case 'led_toggle':
-                        commandText = 'LED';
-                        break;
-                    case 'horn':
-                        commandText = 'HORN';
-                        break;
-                    case 'emergency':
-                        commandText = 'EMERGENCY';
-                        speed = 0;
-                        break;
-                }
-                
-                // Only send if command changed
-                if (commandText !== lastCommand) {
-                    const data = {
-                        command: commandText,
-                        speed: speed
-                    };
-                    
-                    try {
-                        websocket.send(JSON.stringify(data));
-                        addLogEntry(`Sent: ${commandText} at ${speed}% speed`);
-                        lastCommand = commandText;
-                        
-                        // For continuous commands (like movement), send periodic updates
-                        if (['F', 'B', 'L', 'R'].includes(commandText)) {
-                            clearInterval(commandInterval);
-                            commandInterval = setInterval(() => {
-                                websocket.send(JSON.stringify(data));
-                            }, 100); // Send every 100ms while button is held
-                        } else {
-                            clearInterval(commandInterval);
-                        }
-                    } catch (error) {
-                        addLogEntry(`Send error: ${error.message}`);
-                    }
-                }
-            }
-            
-            function activateJoystick(e) {
-                if (!isConnected) return;
-                
-                e.preventDefault();
-                isJoystickActive = true;
-                joystick.style.transition = 'none';
-                moveJoystick(e);
-            }
-            
-            function moveJoystick(e) {
-                if (!isJoystickActive || !isConnected) return;
-                
-                e.preventDefault();
-                const rect = joystickArea.getBoundingClientRect();
-                const centerX = rect.left + rect.width / 2;
-                const centerY = rect.top + rect.height / 2;
-                
-                let clientX, clientY;
-                
-                if (e.type === 'touchmove') {
-                    clientX = e.touches[0].clientX;
-                    clientY = e.touches[0].clientY;
-                } else {
-                    clientX = e.clientX;
-                    clientY = e.clientY;
-                }
-                
-                let x = clientX - centerX;
-                let y = clientY - centerY;
-                
-                // Limit joystick to the area
-                const radius = rect.width / 2;
-                const distance = Math.sqrt(x * x + y * y);
-                
-                if (distance > radius) {
-                    x = x * radius / distance;
-                    y = y * radius / distance;
-                }
-                
-                joystick.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
-                
-                // Determine direction based on position
-                const angle = Math.atan2(y, x) * 180 / Math.PI;
-                const normalizedDistance = distance / radius;
-                
-                if (normalizedDistance < 0.2) {
-                    sendCommand('stop');
-                    return;
-                }
-                
-                if (angle >= -45 && angle < 45) {
-                    sendCommand('right');
-                } else if (angle >= 45 && angle < 135) {
-                    sendCommand('forward');
-                } else if (angle >= -135 && angle < -45) {
-                    sendCommand('backward');
-                } else {
-                    sendCommand('left');
-                }
-            }
-            
-            function deactivateJoystick() {
-                if (!isJoystickActive) return;
-                
-                isJoystickActive = false;
-                joystick.style.transition = 'transform 0.3s ease';
-                joystick.style.transform = 'translate(-50%, -50%)';
-                sendCommand('stop');
-                clearInterval(commandInterval);
-            }
-            
-            function addLogEntry(message) {
-                const logEntry = document.createElement('div');
-                logEntry.className = 'log-entry';
-                logEntry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
-                commandLogs.appendChild(logEntry);
-                commandLogs.scrollTop = commandLogs.scrollHeight;
-            }
-            
-            function loadCommandLogs() {
-                addLogEntry('System initialized');
-                addLogEntry('Enter ESP32 IP and click Connect');
-            }
-            
-            function showPopup(type, message) {
-                connectionPopup.className = `connection-popup show ${type}`;
-                popupMessage.textContent = message;
-                
-                if (type === 'success') {
-                    popupIcon.className = 'fas fa-check-circle';
-                } else if (type === 'error') {
-                    popupIcon.className = 'fas fa-exclamation-circle';
-                } else {
-                    popupIcon.className = 'fas fa-spinner fa-spin';
-                }
-                
-                // Auto-hide after 3 seconds (except for connecting state)
-                if (type !== 'connecting') {
-                    setTimeout(() => {
-                        connectionPopup.classList.remove('show');
-                    }, 3000);
-                }
-            }
-            
-            // Theme Management
-            function initTheme() {
-                const savedTheme = localStorage.getItem('theme');
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                
-                if (savedTheme) {
-                    html.setAttribute('data-theme', savedTheme);
-                } else if (prefersDark) {
-                    html.setAttribute('data-theme', 'dark');
-                    localStorage.setItem('theme', 'dark');
-                }
-                
-                updateToggleState();
-            }
-            
-            function toggleTheme() {
-                if (html.getAttribute('data-theme') === 'dark') {
-                    html.removeAttribute('data-theme');
-                    localStorage.setItem('theme', 'light');
-                } else {
-                    html.setAttribute('data-theme', 'dark');
-                    localStorage.setItem('theme', 'dark');
-                }
-                updateToggleState();
-            }
-            
-            function updateToggleState() {
-                const isDark = html.getAttribute('data-theme') === 'dark';
-                themeToggle.setAttribute('aria-pressed', isDark);
-                themeToggle.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
-            }
-            
-            // Watch for system theme changes
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-                if (!localStorage.getItem('theme')) {
-                    if (e.matches) {
-                        html.setAttribute('data-theme', 'dark');
-                    } else {
-                        html.removeAttribute('data-theme');
-                    }
-                }
-            });
-        });
-         // Signal strength simulation (replace with real WebSocket ping measurements)
-        function updateSignalStrength() {
-            const signalElement = document.getElementById('signal-strength');
-            const strengths = ['poor', 'weak', 'fair', 'good', 'excellent'];
-            
-            // Simulate random signal changes (replace with real measurements)
-            const randomStrength = strengths[Math.floor(Math.random() * strengths.length)];
-            
-            // Remove all classes and add current strength
-            signalElement.className = 'signal-strength ' + randomStrength;
-            
-            // For real implementation, use WebSocket ping times:
-            // 1. Measure round-trip time of periodic ping messages
-            // 2. Map latency to strength levels:
-            //    <50ms = excellent, <100ms = good, <200ms = fair, <500ms = weak, >500ms = poor
-        }
-
-        // Initialize and update every 3 seconds (for demo)
-        setInterval(updateSignalStrength, 3000);
-        updateSignalStrength();
-
-        // Real implementation would look like this:
-        /*
-        let lastPingTime = 0;
-        websocket.onmessage = (e) => {
-            if(e.data === 'pong') {
-                const latency = Date.now() - lastPingTime;
-                updateSignalStrength(latency);
-            }
-        }
-
-        function sendPing() {
-            lastPingTime = Date.now();
-            websocket.send('ping');
-            setTimeout(sendPing, 5000); // Every 5 seconds
-        }
-        */
-     const ESP32_IP = "192.168.1.100"; // Must match staticIP in ESP32 code
-const webSocket = new WebSocket(`ws://${ESP32_IP}:81`);
-
-webSocket.onopen = function() {
-  console.log("Connected to ESP32");
-  document.getElementById("status").textContent = "Connected to ws://" + ESP32_IP;
-};
-
-webSocket.onerror = function(error) {
-  console.error("WebSocket Error:", error);
-  document.getElementById("status").textContent = "Connection failed";
-}
-    </script>
 </body>
 </html>
