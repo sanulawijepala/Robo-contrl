@@ -5,11 +5,11 @@ const char* ssid = "AquaGardian";
 const char* password = "onetoeight";
 
 // Motor control pins
-byte F = A0;
-byte B = A1;
-byte L = A2;
-byte R = A3;
-byte S = A4;
+byte F = 15;
+byte B = 2;
+byte L = 16;
+byte R = 17;
+byte S = 5;
 
 int step_time = 100;
 AsyncWebServer server(80);
@@ -17,7 +17,12 @@ AsyncWebServer server(80);
 
 // Embedded HTML
 const char index_html[] PROGMEM = R"rawliteral(
-<!DOCTYPE html>
+<!DOCTYPE html>  // Initialize motor pins
+  pinMode(R_leg_F, OUTPUT);
+  pinMode(R_leg_B, OUTPUT);
+  pinMode(L_leg_F, OUTPUT);
+  pinMode(L_leg_B, OUTPUT);
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -806,13 +811,13 @@ const char index_html[] PROGMEM = R"rawliteral(
 )rawliteral";
 
 void setup() {
-  // Initialize motor pins
-  pinMode(R_leg_F, OUTPUT);
-  pinMode(R_leg_B, OUTPUT);
-  pinMode(L_leg_F, OUTPUT);
-  pinMode(L_leg_B, OUTPUT);
-
   Serial.begin(115200);
+
+  pinMode(F,OUTPUT);
+  pinMode(B,OUTPUT);
+  pinMode(L,OUTPUT);
+  pinMode(R,OUTPUT);
+  pinMode(S,OUTPUT);
 
   // Connect to WiFi
   WiFi.begin(ssid, password);
@@ -857,4 +862,6 @@ void setup() {
   server.begin();
 }
 
-void loop() {}
+void loop() {
+
+}
