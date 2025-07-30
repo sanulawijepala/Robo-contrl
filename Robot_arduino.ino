@@ -3,11 +3,17 @@ int R_B = 3;
 int L_F = 4;
 int L_B = 5;
 
-int F = A0;
-int B = A1;
-int L = A2;
-int R = A3;
-int S = A4;
+int Fo = A0;
+int Ba = A1;
+int Le = A2;
+int Ri = A3;
+int St = A4;
+
+int Fvar;
+int Bvar;
+int Lvar;
+int Rvar;
+int Svar;
 
 void forw();
 void back();
@@ -32,11 +38,27 @@ void setup () {
 
 void loop () {
 
-  forw();
-  back();
-  left();
-  right();
-  stop();
+     Fvar = analogRead(Fo);
+     Bvar = analogRead(Ba);
+     Lvar = analogRead(Le);
+     Rvar = analogRead(Ri);
+     Svar = analogRead(St);
+
+     if (Fvar > 256){
+     	forw();
+}
+     if (Bvar > 256){
+     	back();
+}
+     if (Lvar > 256){
+     	left();
+}
+     if (Rvar > 256){
+     	right();
+}
+     if (Svar > 256){
+     	stop();
+}
 }
 
 void forw() 
@@ -65,7 +87,7 @@ void right()
   digitalWrite(R_F,HIGH);
   digitalWrite(R_B,LOW);
   digitalWrite(L_F,LOW);
-  digitalWrite(L_B,LOW);
+  digitalWrite(L_B,HIGH);
 }
 void stop()
 {
