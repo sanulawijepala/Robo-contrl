@@ -1,7 +1,9 @@
-int R_F = 2;
-int R_B = 3;
-int L_F = 4;
-int L_B = 5;
+#include <AFMotor.h>
+
+AF_DCMotor R_F(4);
+AF_DCMotor R_B(3);
+AF_DCMotor L_F(2);
+AF_DCMotor L_B(1);
 
 int Fo = A0;
 int Ba = A1;
@@ -15,24 +17,19 @@ int Lvar;
 int Rvar;
 int Svar;
 
-void forw();
-void back();
-void left();
-void right();
-void stop();
+void forw(int speed);
+void back(int speed);
+void left(int speed);
+void right(int speed);
+void stop(int speed);
 
 void setup () {
 
-  pinMode(R_F,OUTPUT);
-  pinMode(R_B,OUTPUT);
-  pinMode(L_F,OUTPUT);
-  pinMode(L_B,OUTPUT);
-
-  pinMode(F,INPUT);
-  pinMode(B,INPUT);
-  pinMode(L,INPUT);
-  pinMode(R,INPUT);
-  pinMode(S,INPUT);
+  pinMode(Fo,INPUT);
+  pinMode(Ba,INPUT);
+  pinMode(Le,INPUT);
+  pinMode(Ri,INPUT);
+  pinMode(St,INPUT);
   
 }
 
@@ -63,36 +60,36 @@ void loop () {
 
 void forw() 
 {
-  digitalWrite(R_F,HIGH);
-  digitalWrite(R_B,LOW);
-  digitalWrite(L_F,HIGH);
-  digitalWrite(L_B,LOW);
+	R_F.run(FORWARD);
+	R_B.run(FORWARD);
+	L_F.run(FORWARD);
+	L_B.run(FORWARD);
 }
 void back()
 {
-  digitalWrite(R_F,LOW);
-  digitalWrite(R_B,HIGH);
-  digitalWrite(L_F,LOW);
-  digitalWrite(L_B,HIGH);
+	R_F.run(BACKWARD);
+	R_B.run(BACKWARD);
+	L_F.run(BACKWARD);
+	L_B.run(BACKWARD);
 }
 void left()
 {
-  digitalWrite(R_F,LOW);
-  digitalWrite(R_B,HIGH);
-  digitalWrite(L_F,HIGH);
-  digitalWrite(L_B,LOW);
+	R_F.run(FORWARD);
+	R_B.run(FORWARD);
+	L_F.run(BACKWARD);
+	L_B.run(BACKWARD);
 }
 void right()
 {
-  digitalWrite(R_F,HIGH);
-  digitalWrite(R_B,LOW);
-  digitalWrite(L_F,LOW);
-  digitalWrite(L_B,HIGH);
+	R_F.run(BACKWARD);
+	R_B.run(BACKWARD);
+	L_F.run(FORWARD);
+	L_B.run(FORWARD);
 }
 void stop()
 {
-  digitalWrite(R_F,LOW);
-  digitalWrite(R_B,LOW);
-  digitalWrite(L_F,LOW);
-  digitalWrite(L_B,LOW);
+	R_F.run(RELEASE);
+	R_B.run(RELEASE);
+	L_F.run(RELEASE);
+	L_B.run(RELEASE);
 }
