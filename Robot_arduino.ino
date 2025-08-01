@@ -10,9 +10,6 @@ int Ba = A1;
 int Le = A2;
 int Ri = A3;
 int St = A4;
-int 
-
-int Sped = 127;
 
 int Fvar;
 int Bvar;
@@ -20,11 +17,11 @@ int Lvar;
 int Rvar;
 int Svar;
 
-void forw();
-void back();
-void left();
-void right();
-void stop();
+void forw(int Sped);
+void back(int Sped);
+void left(int Sped);
+void right(int Sped);
+void stop(int Sped);
 
 void setup () {
 
@@ -46,30 +43,26 @@ void loop () {
 
      if (Fvar > 256){
 
-     	Sped = 64;
-     	forw();
+     	forw(64);
 }
      if (Bvar > 256){
 
-     	Sped = 32;
-     	back();
+     	back(64);
 }
      if (Lvar > 256){
 
-     	Sped = 16;
-     	left();
+     	left(16);
 }
      if (Rvar > 256){
 
-     	Sped = 16;
-     	right();
+     	right(16);
 }
      if (Svar > 256){
      	stop();
 }
 }
 
-void forw() 
+void forw(int Sped) 
 {
 	R_F.run(FORWARD);
 	R_B.run(FORWARD);
@@ -82,14 +75,19 @@ void forw()
 	L_B.setSpeed(Sped);
 	
 }
-void back()
+void back(int Sped)
 {
 	R_F.run(BACKWARD);
 	R_B.run(BACKWARD);
 	L_F.run(BACKWARD);
 	L_B.run(BACKWARD);
+
+	R_F.setSpeed(Sped);
+	R_B.setSpeed(Sped);
+	L_F.setSpeed(Sped);
+	L_B.setSpeed(Sped);
 }
-void left()
+void left(int Sped)
 {
 	R_F.run(FORWARD);
 	R_B.run(FORWARD);
@@ -101,7 +99,7 @@ void left()
 	L_F.setSpeed(Sped);
 	L_B.setSpeed(Sped);
 }
-void right()
+void right(int Sped)
 {
 	R_F.run(BACKWARD);
 	R_B.run(BACKWARD);
