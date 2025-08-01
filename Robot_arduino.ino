@@ -10,6 +10,9 @@ int Ba = A1;
 int Le = A2;
 int Ri = A3;
 int St = A4;
+int 
+
+int Sped = 127;
 
 int Fvar;
 int Bvar;
@@ -17,11 +20,11 @@ int Lvar;
 int Rvar;
 int Svar;
 
-void forw(int speed);
-void back(int speed);
-void left(int speed);
-void right(int speed);
-void stop(int speed);
+void forw();
+void back();
+void left();
+void right();
+void stop();
 
 void setup () {
 
@@ -42,15 +45,23 @@ void loop () {
      Svar = analogRead(St);
 
      if (Fvar > 256){
+
+     	Sped = 64;
      	forw();
 }
      if (Bvar > 256){
+
+     	Sped = 32;
      	back();
 }
      if (Lvar > 256){
+
+     	Sped = 16;
      	left();
 }
      if (Rvar > 256){
+
+     	Sped = 16;
      	right();
 }
      if (Svar > 256){
@@ -64,6 +75,12 @@ void forw()
 	R_B.run(FORWARD);
 	L_F.run(FORWARD);
 	L_B.run(FORWARD);
+
+	R_F.setSpeed(Sped);
+	R_B.setSpeed(Sped);
+	L_F.setSpeed(Sped);
+	L_B.setSpeed(Sped);
+	
 }
 void back()
 {
@@ -78,6 +95,11 @@ void left()
 	R_B.run(FORWARD);
 	L_F.run(BACKWARD);
 	L_B.run(BACKWARD);
+
+	R_F.setSpeed(Sped);
+	R_B.setSpeed(Sped);
+	L_F.setSpeed(Sped);
+	L_B.setSpeed(Sped);
 }
 void right()
 {
@@ -85,6 +107,11 @@ void right()
 	R_B.run(BACKWARD);
 	L_F.run(FORWARD);
 	L_B.run(FORWARD);
+
+	R_F.setSpeed(Sped);
+	R_B.setSpeed(Sped);
+	L_F.setSpeed(Sped);
+	L_B.setSpeed(Sped);
 }
 void stop()
 {
@@ -92,4 +119,9 @@ void stop()
 	R_B.run(RELEASE);
 	L_F.run(RELEASE);
 	L_B.run(RELEASE);
+
+	R_F.setSpeed(Sped);
+	R_B.setSpeed(Sped);
+	L_F.setSpeed(Sped);
+	L_B.setSpeed(Sped);
 }
