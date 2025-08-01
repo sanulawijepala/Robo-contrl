@@ -1,18 +1,8 @@
-#include <AFMotor.h>
-
-AF_DCMotor R_F(4);
-AF_DCMotor R_B(3);
-AF_DCMotor L_F(2);
-AF_DCMotor L_B(1);
-
 int Fo = A0;
 int Ba = A1;
 int Le = A2;
 int Ri = A3;
 int St = A4;
-int 
-
-int Sped = 127;
 
 int Fvar;
 int Bvar;
@@ -20,11 +10,25 @@ int Lvar;
 int Rvar;
 int Svar;
 
-void forw();
-void back();
-void left();
-void right();
+int Sped;
+int Current_Sped;
+
+void speed_control(int Sped);
+void forw(int Sped);
+void back(int Sped);
+void left(int Sped);
+void right(int Sped);
 void stop();
+
+// Motor A connections
+int enA = 9;
+int in1 = 8;
+int in2 = 7;
+
+// Motor B connections
+int enB = 3;
+int in3 = 5;
+int in4 = 4;
 
 void setup () {
 
@@ -33,6 +37,20 @@ void setup () {
   pinMode(Le,INPUT);
   pinMode(Ri,INPUT);
   pinMode(St,INPUT);
+
+    // Set all the motor control pins to outputs
+  pinMode(enA, OUTPUT);
+  pinMode(enB, OUTPUT);
+  pinMode(in1, OUTPUT);
+  pinMode(in2, OUTPUT);
+  pinMode(in3, OUTPUT);
+  pinMode(in4, OUTPUT);
+
+  // Turn off motors - Initial state
+  digitalWrite(in1, LOW);
+  digitalWrite(in2, LOW);
+  digitalWrite(in3, LOW);
+  digitalWrite(in4, LOW);
   
 }
 
@@ -46,82 +64,89 @@ void loop () {
 
      if (Fvar > 256){
 
-     	Sped = 64;
-     	forw();
+     	forw(128);
 }
      if (Bvar > 256){
 
-     	Sped = 32;
-     	back();
+     	back(64);
 }
      if (Lvar > 256){
 
-     	Sped = 16;
-     	left();
+     	left(16);
 }
      if (Rvar > 256){
-
-     	Sped = 16;
-     	right();
+     	right(16);
 }
      if (Svar > 256){
      	stop();
 }
 }
 
-void forw() 
+void forw(int Sped) 
 {
-	R_F.run(FORWARD);
-	R_B.run(FORWARD);
-	L_F.run(FORWARD);
-	L_B.run(FORWARD);
+	speed_control(Sped);
 
-	R_F.setSpeed(Sped);
-	R_B.setSpeed(Sped);
-	L_F.setSpeed(Sped);
-	L_B.setSpeed(Sped);
+	digitalWrite(in1, HIGH);//motor pair 1 forward
+	digitalWrite(in2, LOW);
+	digitalWrite(in3, HIGH);//motor pair 2 forward
+	digitalWrite(in4, LOW);
+}
+void back(int Sped)
+{
+	speed_control(Sped);
 	
+	digitalWrite(in1, LOW);//motor pair 1 backward
+	digitalWrite(in2, HIGH);
+	digitalWrite(in3, LOW);//motor pair 2 backward
+	digitalWrite(in4, HIGH);
 }
-void back()
+void left(int Sped)
 {
-	R_F.run(BACKWARD);
-	R_B.run(BACKWARD);
-	L_F.run(BACKWARD);
-	L_B.run(BACKWARD);
+	speed_control(Sped);
+	digitalWrite(in1, HIGH);//motor pair 1 forward
+	digitalWrite(in2, LOW);
+	digitalWrite(in3, LOW);//motor pair 2 backward
+	digitalWrite(in4, HIGH);
 }
-void left()
+void right(int Sped)
 {
-	R_F.run(FORWARD);
-	R_B.run(FORWARD);
-	L_F.run(BACKWARD);
-	L_B.run(BACKWARD);
+	speed_control(Sped);
 
-	R_F.setSpeed(Sped);
-	R_B.setSpeed(Sped);
-	L_F.setSpeed(Sped);
-	L_B.setSpeed(Sped);
-}
-void right()
-{
-	R_F.run(BACKWARD);
-	R_B.run(BACKWARD);
-	L_F.run(FORWARD);
-	L_B.run(FORWARD);
-
-	R_F.setSpeed(Sped);
-	R_B.setSpeed(Sped);
-	L_F.setSpeed(Sped);
-	L_B.setSpeed(Sped);
+	digitalWrite(in1, LOW);//motor pair 1 backward
+	digitalWrite(in2, HIGH);
+	digitalWrite(in3, HIGH);//motor pair 2 forward
+	digitalWrite(in4, LOW);
 }
 void stop()
 {
-	R_F.run(RELEASE);
-	R_B.run(RELEASE);
-	L_F.run(RELEASE);
-	L_B.run(RELEASE);
+	speed_control(Sped);
 
-	R_F.setSpeed(Sped);
-	R_B.setSpeed(Sped);
-	L_F.setSpeed(Sped);
-	L_B.setSpeed(Sped);
+	digitalWrite(in1, LOW);
+	digitalWrite(in2, LOW);
+	digitalWrite(in3, LOW);
+	digitalWrite(in4, LOW);
+}
+
+void speed_control(int Sped)
+{
+	if (Sped > Current_Sped)
+	{
+		for (int i = Current_Sped; i < Sped; i++) {
+	       	    analogWrite(enA, i);
+	       	    analogWrite(enB, i);
+	       	    delay(20);
+		    }
+		    
+		Current_Sped = Sped
+	 }
+	else
+	{
+		for (int i = Current_Sped; i > Sped; i--) {
+	       	    analogWrite(enA, i);
+	       	    analogWrite(enB, i);
+	       	    delay(20);
+  	 	    }
+		    
+		Current_Sped = Sped
+	}
 }
