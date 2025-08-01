@@ -5,11 +5,11 @@ const char* ssid = "AquaGardian";
 const char* password = "onetoeight";
 
 // Motor control pins
-byte F = 15;
-byte B = 2;
-byte L = 16;
-byte R = 17;
-byte S = 5;
+byte F = 27;
+byte B = 26;
+byte L = 25;
+byte R = 33;
+byte S = 32;
 
 int step_time = 100;
 AsyncWebServer server(80);
