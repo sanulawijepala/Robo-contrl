@@ -1,15 +1,3 @@
-int Fo = A0;
-int Ba = A1;
-int Le = A2;
-int Ri = A3;
-int St = A4;
-
-int Fvar;
-int Bvar;
-int Lvar;
-int Rvar;
-int Svar;
-
 int Sped;
 int Current_Sped;
 
@@ -32,12 +20,6 @@ int in4 = 4;
 
 void setup () {
 
-  pinMode(Fo,INPUT);
-  pinMode(Ba,INPUT);
-  pinMode(Le,INPUT);
-  pinMode(Ri,INPUT);
-  pinMode(St,INPUT);
-
     // Set all the motor control pins to outputs
   pinMode(enA, OUTPUT);
   pinMode(enB, OUTPUT);
@@ -56,30 +38,11 @@ void setup () {
 
 void loop () {
 
-     Fvar = analogRead(Fo);
-     Bvar = analogRead(Ba);
-     Lvar = analogRead(Le);
-     Rvar = analogRead(Ri);
-     Svar = analogRead(St);
+     forw(255);
+     delay(5000);
+     right(32);
+     delay(1000);
 
-     if (Fvar > 256){
-
-     	forw(128);
-}
-     if (Bvar > 256){
-
-     	back(64);
-}
-     if (Lvar > 256){
-
-     	left(16);
-}
-     if (Rvar > 256){
-     	right(16);
-}
-     if (Svar > 256){
-     	stop();
-}
 }
 
 void forw(int Sped) 
@@ -90,6 +53,8 @@ void forw(int Sped)
 	digitalWrite(in2, LOW);
 	digitalWrite(in3, HIGH);//motor pair 2 forward
 	digitalWrite(in4, LOW);
+
+
 }
 void back(int Sped)
 {
