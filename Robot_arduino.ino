@@ -1,10 +1,11 @@
+
 int Sped;
 int Current_Sped;
 
 void speed_control(int Sped);
 void forw(int Sped);
 void back(int Sped);
-void left(int Sped);
+4void left(int Sped);
 void right(int Sped);
 void stop();
 
@@ -20,7 +21,7 @@ int in4 = 4;
 
 void setup () {
 
-    // Set all the motor control pins to outputs
+   // Set all the motor control pins to outputs
   pinMode(enA, OUTPUT);
   pinMode(enB, OUTPUT);
   pinMode(in1, OUTPUT);
@@ -40,7 +41,7 @@ void loop () {
 
      forw(255);
      delay(5000);
-     right(32);
+     right(255);
      delay(1000);
 
 }
